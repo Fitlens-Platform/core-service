@@ -1,0 +1,121 @@
+spring:
+  application:
+    name: FitLens
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 10MB
+      file-size-threshold: 2KB
+      location: ${java.io.tmpdir}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:fitlens}
+    username: ${DB_USERNAME:fitlens}
+    password: ${DB_PASSWORD}
+
+  data:
+    redis:
+      database: 2
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  jpa:
+    hibernate:
+      ddl-auto: none  # Required: Let Liquibase manage schema
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+  liquibase:
+    enabled: false    # Disabled because we use MANUAL configuration
+    drop-first: true
+    contexts: ${LIQUIBASE_CONTEXTS:dev}  # dev=all migrations, prod=schema only, none=schema only
+
+  # JWT Configuration
+  jwt:
+    secret: ${JWT_SECRET:}
+    access-token-expiration: 28800000  # 8 hours in milliseconds
+    refresh-token-expiration: 604800000  # 7 days in milliseconds
+
+
+  # Device Management Configuration
+  prevent-multiple-devices: false
+
+  # Server Configuration
+  server:
+    port: ${SERVER_PORT:8080}
+    servlet:
+      context-path: /api
+    error:
+      include-message: always
+      include-binding-errors: always
+
+  # API Documentation
+  scalar:
+    enabled: ${API_DOCS_ENABLED:true}
+    path: /docs
+
+  # Actuator Configuration
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics,prometheus,.env,loggers,threaddump,heapdump
+        base-path: /actuator
+    endpoint:
+      health:
+        show-details: when_authorized
+        show-components: always
+        probes:
+          enabled: true
+      info:
+        access: read-only
+      metrics:
+        access: read-only
+      prometheus:
+        access: read-only
+      env:
+        access: read-only
+        show-values: when_authorized
+      loggers:
+        access: read-only
+    info:
+      build:
+        enabled: true
+      git:
+        mode: full
+      java:
+        enabled: true
+      os:
+        enabled: true
+    metrics:
+      distribution:
+        percentiles-histogram:
+          http.server.requests: true
+        percentiles:
+          http.server.requests: 0.50, 0.90, 0.95, 0.99
+      tags:
+        application: ${spring.application.name}
+
+  # Logging configuration
+  logging:
+    file:
+      name: ${LOG_FILE_PATH:./logs/app.log}
+    level:
+      root: ${ROOT_LOG_LEVEL:info}
+      com.fitlens: ${APP_LOG_LEVEL:debug}
+    pattern:
+      file: "%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+
+
+
+

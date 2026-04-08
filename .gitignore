@@ -1,0 +1,208 @@
+# ==============================================================================
+# Build & Environment (Maven/Java)
+# ==============================================================================
+target/
+build/
+bin/
+*.class
+*.jar
+*.war
+*.ear
+*.exe
+*.dll
+*.so
+*.dylib
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+
+# Keep these even if target is ignored
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ==============================================================================
+# Gradle (if used instead of Maven)
+# ==============================================================================
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# ==============================================================================
+# Sensitive Data & Environment Variables (CRITICAL)
+# ==============================================================================
+.env
+.env.local
+.env.*.local
+*.properties.local
+*.yml.local
+
+# Application configuration with secrets
+application-local.properties
+application-local.yml
+application-dev.properties
+application-prod.properties
+application-staging.yml
+application-secret.yml
+
+# Firebase Service Account Keys (NEVER commit!)
+**/firebase-*.json
+**/serviceAccountKey.json
+**/firebase-adminsdk-*.json
+src/main/resources/firebase/
+
+# Security & Keys
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+*.truststore
+
+# AWS Credentials
+.aws/
+credentials
+
+# ==============================================================================
+# Database Files
+# ==============================================================================
+# H2 Database (if used for testing)
+*.db
+*.h2.db
+*.trace.db
+
+# PostgreSQL dumps
+*.sql
+*.dump
+
+# Redis persistence files
+dump.rdb
+appendonly.aof
+
+# ==============================================================================
+# Logging & Monitoring
+# ==============================================================================
+logs/
+*.log
+*.log.*
+/out/
+
+# ==============================================================================
+# Test Coverage & Reports
+# ==============================================================================
+# JaCoCo
+**/jacoco.exec
+**/jacoco-report/
+coverage/
+
+# Surefire reports
+**/surefire-reports/
+
+# ==============================================================================
+# Temporary Files
+# ==============================================================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+
+# ==============================================================================
+# IntelliJ IDEA
+# ==============================================================================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+/classes/
+.idea_modules/
+
+# ==============================================================================
+# Eclipse / STS (Spring Tool Suite)
+# ==============================================================================
+.apt_generated
+.apt_generated_tests
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+
+# ==============================================================================
+# VS Code
+# ==============================================================================
+.vscode/
+*.code-workspace
+.history/
+
+# ==============================================================================
+# NetBeans
+# ==============================================================================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ==============================================================================
+# OS Specific Files
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==============================================================================
+# Docker & Containerization
+# ==============================================================================
+docker-compose.override.yml
+.dockerignore
+
+# ==============================================================================
+# Node Modules (if using any frontend build tools)
+# ==============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ==============================================================================
+# Uploads & User Data (Development)
+# ==============================================================================
+/uploads/
+/tmp/
+/temp/
+
+# ==============================================================================
+# Documentation (Generated)
+# ==============================================================================
+/docs/generated/
+*.pdf
+*.docx
+
+# ==============================================================================
+# Miscellaneous
+# ==============================================================================
+*.swp
+*.swo
+.cache/
+.metadata/
