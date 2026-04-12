@@ -30,16 +30,14 @@ public class CustomerController {
 	private final CustomerService customerService;
 
 	@GetMapping("/profile")
-	@Operation(
-			summary = "Get Current Customer Profile",
-			description = "Retrieves the detailed profile information for the currently authenticated customer."
-	)
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Profile data retrieved successfully"),
+	@Operation(summary = "Get Current Customer Profile",
+			description = "Retrieves the detailed profile information for the currently authenticated customer.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Profile data retrieved successfully"),
 			@ApiResponse(responseCode = "401", description = "Unauthorized - Access token is missing or invalid"),
-			@ApiResponse(responseCode = "404", description = "Customer not found - The authenticated user record does not exist"),
-			@ApiResponse(responseCode = "500", description = "Internal Server Error - Something went wrong on the server")
-	})
+			@ApiResponse(responseCode = "404",
+					description = "Customer not found - The authenticated user record does not exist"),
+			@ApiResponse(responseCode = "500",
+					description = "Internal Server Error - Something went wrong on the server") })
 	public ResponseEntity<CustomerResponse> getProfile(@AuthenticationPrincipal Map<String, Object> principal) {
 		var customerId = AuthenticationHelper.extractCustomerId(principal);
 		log.debug("Get profile request: customerId={}", customerId);
@@ -49,12 +47,11 @@ public class CustomerController {
 	}
 
 	@PatchMapping("/profile")
-	public ResponseEntity<CustomerResponse> updateProfile(
-			@AuthenticationPrincipal Map<String, Object> principal,
-			@RequestBody @Valid CustomerUpdateRequest request){
-		var customerId= AuthenticationHelper.extractCustomerId(principal);
+	public ResponseEntity<CustomerResponse> updateProfile(@AuthenticationPrincipal Map<String, Object> principal,
+			@RequestBody @Valid CustomerUpdateRequest request) {
+		var customerId = AuthenticationHelper.extractCustomerId(principal);
 		log.info("Update customer profile id: {}", customerId);
-		var response = customerService.updateProfile(customerId,request);
+		var response = customerService.updateProfile(customerId, request);
 		return ResponseEntity.ok(response);
 	}
 

@@ -12,15 +12,10 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 public interface CustomerMapper {
 
-    CustomerResponse toResponse(User user);
+	CustomerResponse toResponse(User user);
 
+	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "email", ignore = true)
+	void updateCustomer(CustomerUpdateRequest request, @MappingTarget User user);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "password", ignore = true)
-    @Mapping(target = "role", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
-    @Mapping(target = "email", ignore = true)
-    void updateCustomer(@MappingTarget User user, CustomerUpdateRequest request);
 }

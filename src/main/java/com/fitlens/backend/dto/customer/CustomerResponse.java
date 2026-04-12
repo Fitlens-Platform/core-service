@@ -51,4 +51,7 @@ public class CustomerResponse {
 	@Schema(description = "Number of planned training days per week", example = "5")
 	private int trainingDays;
 
+	@Schema(description = "Total calculated daily caloric intake requirement based on user metrics and goals", example = "2500")
+	private Integer dailyCalories;
+
 }

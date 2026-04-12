@@ -96,6 +96,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
+              - column:
+                  name: daily_calories
+                  type: INT
+                  constraints:
+                    nullable: true
 
         - createIndex:
             indexName: idx_user_email

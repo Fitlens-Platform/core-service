@@ -25,6 +25,10 @@ public class AuthService {
 
 	private final UserRepository userRepository;
 
+	private final CustomerHistoryService customerHistoryService;
+
+	private final CustomerService customerService;
+
 	private final PasswordEncoder passwordEncoder;
 
 	private final JwtTokenProvider tokenProvider;
@@ -61,8 +65,11 @@ public class AuthService {
 			.role(UserRole.USER)
 			.build();
 
+		user.setDailyCalories(customerService.calculateCalories(user));
 		User savedUser = userRepository.save(user);
 		log.info("User saved successfully with ID: {}, email: {}", savedUser.getId(), savedUser.getEmail());
+
+		customerHistoryService.saveCustomerHistorySnapshot(savedUser);
 
 		Authentication authentication = authenticationManager
 			.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));

@@ -93,6 +93,9 @@ public class User {
 	@Max(value = 7)
 	private int trainingDays;
 
+
+	private int dailyCalories;
+
 	@Column(name = "is_active", nullable = false)
 	@Builder.Default
 	private boolean isActive = true;
