@@ -93,7 +93,8 @@ public class User {
 	@Max(value = 7)
 	private int trainingDays;
 
-
+	@Column(nullable = false)
+	@NotNull
 	private int dailyCalories;
 
 	@Column(name = "is_active", nullable = false)

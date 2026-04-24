@@ -85,6 +85,9 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: plan_id
+                  type: BIGINT
+              - column:
                   name: is_active
                   type: BOOLEAN
                   constraints:
@@ -101,6 +104,15 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: true
+
+        - addForeignKeyConstrain:
+            baseTableName: users
+            baseColumnNames: plan_id
+            constrainName: fk_users_workout_plan
+            referencedTableName: workout_plan
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
 
         - createIndex:
             indexName: idx_user_email

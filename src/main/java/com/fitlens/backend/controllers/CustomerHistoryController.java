@@ -22,9 +22,9 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@RequestMapping("/user-history")
+@RequestMapping("/customer/history")
 @RequiredArgsConstructor
-@Tag(name = "User history",
+@Tag(name = "Customer history",
 		description = "Endpoints for tracking physical progress history")
 @SecurityRequirement(name = "bearerAuth")
 public class CustomerHistoryController {

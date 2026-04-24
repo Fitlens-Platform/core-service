@@ -38,8 +38,7 @@ public class CustomerController {
 					description = "Customer not found - The authenticated user record does not exist"),
 			@ApiResponse(responseCode = "500",
 					description = "Internal Server Error - Something went wrong on the server") })
-	public ResponseEntity<CustomerResponse> getProfile(@AuthenticationPrincipal Map<String, Object> principal) {
-		var customerId = AuthenticationHelper.extractCustomerId(principal);
+	public ResponseEntity<CustomerResponse> getProfile(@RequestHeader("X-User-Id") Long customerId)	{
 		log.debug("Get profile request: customerId={}", customerId);
 
 		var profile = customerService.getCustomerProfile(customerId);
@@ -47,9 +46,8 @@ public class CustomerController {
 	}
 
 	@PatchMapping("/profile")
-	public ResponseEntity<CustomerResponse> updateProfile(@AuthenticationPrincipal Map<String, Object> principal,
+	public ResponseEntity<CustomerResponse> updateProfile(@RequestHeader("X-User-Id") Long customerId,
 			@RequestBody @Valid CustomerUpdateRequest request) {
-		var customerId = AuthenticationHelper.extractCustomerId(principal);
 		log.info("Update customer profile id: {}", customerId);
 		var response = customerService.updateProfile(customerId, request);
 		return ResponseEntity.ok(response);

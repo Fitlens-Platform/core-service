@@ -1,0 +1,36 @@
+- changeSet:
+    id: 004-create-workout-day-table
+    author: mahmoud
+    changes:
+      - createTable:
+          tableName: workout_day
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: plan_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+            - column:
+                name: day_number
+                type: INT
+                constraints:
+                  nullable: false
+            - column:
+                name: day_label
+                type: VARCHAR(100)
+
+      - addForeignKeyConstrain:
+          baseTableName: workout_day
+          baseColumnNames: plan_id
+          constrainName: fk_workout_day_workout_plan
+          referencedTableName: workout_plan
+          referencedColumnNames: id
+          onDelete: RESTRICT
+          onUpdate: RESTRICT

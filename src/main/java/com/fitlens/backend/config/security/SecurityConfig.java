@@ -38,20 +38,30 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-			.csrf(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/auth/**")
-				.permitAll()
-				.requestMatchers("/api/v1/public/**")
-				.permitAll()
-				.requestMatchers("/api/health")
-				.permitAll()
-				.requestMatchers("/swagger-ui/**", "/v3/api-docs/**")
-				.permitAll()
-				.anyRequest()
-				.authenticated())
-			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authenticationProvider(authenticationProvider())
-			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+				.csrf(AbstractHttpConfigurer::disable)
+				.authorizeHttpRequests(auth -> auth
+						// 1. مسارات الـ Auth (شيلنا /api/v1 لأنها متضافة أوتوماتيك من الـ Context Path)
+						.requestMatchers("/auth/**").permitAll()
+
+						// 2. مسارات الـ Swagger (ريليتيف للـ context path)
+						.requestMatchers(
+								"/v3/api-docs/**",
+								"/v3/api-docs.yaml",
+								"/swagger-ui/**",
+								"/swagger-ui.html",
+								"/swagger-resources/**",
+								"/webjars/**"
+						).permitAll()
+
+						// 3. مسارات عامة
+						.requestMatchers("/public/**", "/health").permitAll()
+
+						// أي حاجة تانية محتاجة Token
+						.anyRequest().authenticated()
+				)
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authenticationProvider(authenticationProvider())
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}
@@ -76,11 +86,11 @@ public class SecurityConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOriginPatterns(List.of("*"));
+		configuration.setAllowedOriginPatterns(List.of("*")); // مسموح للكل
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 		configuration.setAllowedHeaders(List.of("*"));
 		configuration.setExposedHeaders(List.of("Authorization"));
-		configuration.setAllowCredentials(true);
+		configuration.setAllowCredentials(false); // خليها false مؤقتاً للتجربة
 		configuration.setMaxAge(3600L);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
