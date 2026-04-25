@@ -31,11 +31,3 @@ databaseChangeLog:
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP
 
-        - addForeignKeyConstraint:
-            baseTableName: user_history
-            baseColumnNames: user_id
-            constraintName: fk_user_history_users
-            referencedTableName: users
-            referencedColumnNames: id
-            onDelete: RESTRICT
-            onUpdate: RESTRICT

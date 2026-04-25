@@ -105,10 +105,10 @@ databaseChangeLog:
                   constraints:
                     nullable: true
 
-        - addForeignKeyConstrain:
+        - addForeignKeyConstraint:
             baseTableName: users
             baseColumnNames: plan_id
-            constrainName: fk_users_workout_plan
+            constraintName: fk_users_workout_plan
             referencedTableName: workout_plan
             referencedColumnNames: id
             onDelete: RESTRICT

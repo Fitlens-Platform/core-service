@@ -11,12 +11,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "workout_plan")
-@SQLRestriction("deleted = false")
 @Getter
 @Setter
+@ToString(exclude = "days")
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 public class WorkoutPlan {
 
