@@ -1,5 +1,6 @@
 package com.fitlens.backend.dto.auth;
 
+import com.fitlens.backend.entities.enums.FitnessLevel;
 import com.fitlens.backend.entities.enums.UserGoal;
 import com.fitlens.backend.utils.ValidationConstants;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -82,8 +83,8 @@ public class SignUpRequest {
 	@Schema(description = "Whether customer accepts terms and conditions", example = "true")
 	private boolean acceptTerms;
 
-	// public String getFullName(String firstName, String lastName){
-	// return firstName + " " + lastName;
-	// }
+	@NotNull(message = "Fitness level is required")
+	@Schema(description = "User's fitness level", example = "INTERMEDIATE",allowableValues = {"BEGINNER", "INTERMEDIATE", "ADVANCED"},requiredMode = Schema.RequiredMode.REQUIRED)
+	private FitnessLevel fitnessLevel;
 
 }

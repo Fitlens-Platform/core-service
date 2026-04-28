@@ -63,6 +63,7 @@ public class AuthService {
 			.weightKg(request.getWeightKg())
 			.isActive(true)
 			.role(UserRole.USER)
+			.fitnessLevel(request.getFitnessLevel())
 			.build();
 
 		user.setDailyCalories(customerService.calculateCalories(user));

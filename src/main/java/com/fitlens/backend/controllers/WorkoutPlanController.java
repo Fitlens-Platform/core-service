@@ -3,7 +3,7 @@ package com.fitlens.backend.controllers;
 
 import com.fitlens.backend.dto.PagedResponse;
 import com.fitlens.backend.dto.workoutplan.WorkoutPlanFilter;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanRequest;
+import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
 import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
 import com.fitlens.backend.services.WorkoutPlanService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,14 +45,20 @@ public class WorkoutPlanController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Create a New Workout Plan",
+            description = "Registers a new workout plan in the system. These plans can then be discovered and assigned to customers. Ensure the plan name is unique to avoid conflicts.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Workout plan created successfully"),
+            @ApiResponse(responseCode = "400", description = "Bad Request - Validation failed (e.g., missing required fields, invalid difficulty level)"),
+            @ApiResponse(responseCode = "409", description = "Conflict - A workout plan with this name already exists"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error - Something went wrong on the server")
+    })
     @PostMapping
-    public ResponseEntity<WorkoutPlanResponse> addWorkoutPlan(@Valid @RequestBody WorkoutPlanRequest workoutPlanRequest){
-        log.info("REST request to add a new workout plan: {}", workoutPlanRequest.getName());
-        var response = workoutPlanService.addWorkoutPlan(workoutPlanRequest);
+    public ResponseEntity<WorkoutPlanResponse> addWorkoutPlan(@Valid @RequestBody CreateWorkoutPlanRequest createWorkoutPlanRequest){
+        log.info("REST request to add a new workout plan: {}", createWorkoutPlanRequest.getName());
+        var response = workoutPlanService.addWorkoutPlan(createWorkoutPlanRequest);
         return ResponseEntity.ok(response);
     }
-
-
 
 
 }

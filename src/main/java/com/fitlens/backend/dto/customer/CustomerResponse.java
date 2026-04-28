@@ -54,4 +54,8 @@ public class CustomerResponse {
 	@Schema(description = "Total calculated daily caloric intake requirement based on user metrics and goals", example = "2500")
 	private Integer dailyCalories;
 
+	@Schema(description = "The name or title of the currently assigned workout plan for the user",
+			example = "Full Body Hypertrophy")
+	private String workoutPlan;
+
 }

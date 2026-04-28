@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Request to add workout plan")
-public class WorkoutPlanRequest {
+public class CreateWorkoutPlanRequest {
 
 
     @Schema(description = "The official title of the training system", example = "Push Pull Legs (PPL)")

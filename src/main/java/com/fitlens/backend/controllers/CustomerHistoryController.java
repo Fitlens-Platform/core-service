@@ -4,7 +4,6 @@ import com.fitlens.backend.dto.PagedResponse;
 import com.fitlens.backend.dto.customerhistory.CustomerHistoryFilter;
 import com.fitlens.backend.dto.customerhistory.CustomerHistoryResponse;
 import com.fitlens.backend.services.CustomerHistoryService;
-import com.fitlens.backend.utils.AuthenticationHelper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -13,12 +12,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -52,9 +50,7 @@ public class CustomerHistoryController {
 			@ApiResponse(responseCode = "403", description = "You don't have permission to access this user's history"),
 			@ApiResponse(responseCode = "404", description = "User not found") })
 	public ResponseEntity<PagedResponse<CustomerHistoryResponse>> getAllHistory(
-			@AuthenticationPrincipal Map<String, Object> principal, CustomerHistoryFilter filter) {
-
-		var customerId = AuthenticationHelper.extractCustomerId(principal);
+			@RequestHeader("X-User-Id") Long customerId, CustomerHistoryFilter filter) {
 
 		log.debug("Get customer history for customer: {}", customerId);
 

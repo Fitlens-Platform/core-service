@@ -2,9 +2,11 @@ package com.fitlens.backend.services;
 
 import com.fitlens.backend.dto.customer.CustomerResponse;
 import com.fitlens.backend.dto.customer.CustomerUpdateRequest;
+import com.fitlens.backend.dto.customer.UpdateUserPlanRequest;
 import com.fitlens.backend.entities.User;
 import com.fitlens.backend.mappers.CustomerMapper;
 import com.fitlens.backend.repositories.UserRepository;
+import com.fitlens.backend.repositories.WorkoutPlanRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,8 @@ public class CustomerService {
 	private final CustomerMapper customerMapper;
 
 	private final CustomerHistoryService customerHistoryService;
+
+	private final WorkoutPlanRepository workoutPlanRepository;
 
 	public CustomerResponse getCustomerProfile(Long customerId) {
 
@@ -116,6 +120,23 @@ public class CustomerService {
 			case "BUILD_MUSCLE" -> (int) (tdee + MUSCLE_BUILD_ADJUSTMENT);
 			default -> (int) tdee; // Fallback to Maintenance
 		};
+	}
+
+	public CustomerResponse updatePlan(Long customerId,UpdateUserPlanRequest request){
+
+		log.info("Updating plan for customer ID: {} to new plan ID: {}",
+				customerId, request.getPlanId());
+
+		var customer = findByIdOrThrow(customerId);
+		var workoutPlan = workoutPlanRepository.findById(request.getPlanId())
+				.orElseThrow(() -> new RuntimeException("Workout Plan not found with id: " + request.getPlanId()));
+
+		customer.setWorkoutPlan(workoutPlan);
+
+		var savedCustomer = userRepository.save(customer);
+
+		log.info("successfully updated the plan");
+		return customerMapper.toResponse(savedCustomer);
 	}
 
 }

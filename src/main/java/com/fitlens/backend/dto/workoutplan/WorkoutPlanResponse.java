@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Schema(description = "Workout plan response DTO")
 public class WorkoutPlanResponse {
+
     @Schema(description = "The unique identifier for the workout plan", example = "1")
     private Long id;
 

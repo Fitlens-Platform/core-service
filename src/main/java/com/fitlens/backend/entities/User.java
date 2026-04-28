@@ -26,6 +26,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@ToString(exclude = "workoutPlan")
 public class User {
 
 	@Id
@@ -86,6 +87,10 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private FitnessLevel fitnessLevel;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "plan_id")
+	private WorkoutPlan workoutPlan;
 
 	@Column(nullable = false)
 	@NotNull

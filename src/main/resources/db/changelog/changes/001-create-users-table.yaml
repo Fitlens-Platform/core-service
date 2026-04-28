@@ -79,6 +79,8 @@ databaseChangeLog:
               - column:
                   name: fitness_level
                   type: VARCHAR(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: training_days
                   type: INT
@@ -87,6 +89,8 @@ databaseChangeLog:
               - column:
                   name: plan_id
                   type: BIGINT
+                  constraints:
+                    nullable: true
               - column:
                   name: is_active
                   type: BOOLEAN
@@ -104,6 +108,7 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: true
+
 
         - addForeignKeyConstraint:
             baseTableName: users

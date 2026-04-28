@@ -9,9 +9,9 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-
 public interface CustomerMapper {
 
+	@Mapping(target = "workoutPlan", source = "workoutPlan.name")
 	CustomerResponse toResponse(User user);
 
 	@Mapping(target = "id", ignore = true)

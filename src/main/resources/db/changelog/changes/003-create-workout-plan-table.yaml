@@ -31,3 +31,10 @@ databaseChangeLog:
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP
 
+        - createIndex:
+            indexName: idx_plan_name
+            tableName: workout_plan
+            columns:
+              - column:
+                  name: name
+

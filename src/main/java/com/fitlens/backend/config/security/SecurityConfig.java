@@ -40,10 +40,8 @@ public class SecurityConfig {
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
-						// 1. مسارات الـ Auth (شيلنا /api/v1 لأنها متضافة أوتوماتيك من الـ Context Path)
 						.requestMatchers("/auth/**").permitAll()
 
-						// 2. مسارات الـ Swagger (ريليتيف للـ context path)
 						.requestMatchers(
 								"/v3/api-docs/**",
 								"/v3/api-docs.yaml",
@@ -53,10 +51,8 @@ public class SecurityConfig {
 								"/webjars/**"
 						).permitAll()
 
-						// 3. مسارات عامة
 						.requestMatchers("/public/**", "/health").permitAll()
 
-						// أي حاجة تانية محتاجة Token
 						.anyRequest().authenticated()
 				)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -86,11 +82,11 @@ public class SecurityConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOriginPatterns(List.of("*")); // مسموح للكل
+		configuration.setAllowedOriginPatterns(List.of("*"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 		configuration.setAllowedHeaders(List.of("*"));
 		configuration.setExposedHeaders(List.of("Authorization"));
-		configuration.setAllowCredentials(false); // خليها false مؤقتاً للتجربة
+		configuration.setAllowCredentials(false);
 		configuration.setMaxAge(3600L);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

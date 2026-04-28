@@ -2,7 +2,7 @@ package com.fitlens.backend.services;
 
 import com.fitlens.backend.dto.PagedResponse;
 import com.fitlens.backend.dto.workoutplan.WorkoutPlanFilter;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanRequest;
+import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
 import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
 import com.fitlens.backend.mappers.WorkoutPlanMapper;
 import com.fitlens.backend.repositories.WorkoutPlanRepository;
@@ -49,7 +49,7 @@ public class WorkoutPlanService {
                 .build();
     }
 
-    public WorkoutPlanResponse addWorkoutPlan(WorkoutPlanRequest request){
+    public WorkoutPlanResponse addWorkoutPlan(CreateWorkoutPlanRequest request){
 
         log.info("Adding new workout plan: {}", request.getName());
 

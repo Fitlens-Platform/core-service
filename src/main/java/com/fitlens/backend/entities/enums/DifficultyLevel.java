@@ -1,5 +1,5 @@
 package com.fitlens.backend.entities.enums;
 
-public enum FitnessLevel {
+public enum DifficultyLevel {
     BEGINNER, INTERMEDIATE, ADVANCED
 }

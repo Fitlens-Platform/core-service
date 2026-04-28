@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-exercise-table
+      author: mahmoud
+      changes:
+        - createTable:
+            tableName: exercise
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: short_description
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: VARCHAR(50) # (Weightlifting, Bodyweight, Stretching)
+              - column:
+                  name: difficulty_level
+                  type: VARCHAR(50) # (Beginner, Intermediate, Advanced)
+              - column:
+                  name: target_muscle
+                  type: VARCHAR(100)
+              - column:
+                  name: secondary_muscles
+                  type: VARCHAR(255)
+              - column:
+                  name: required_equipments
+                  type: VARCHAR(255)
+              - column:
+                  name: video_url
+                  type: VARCHAR(512)
+              - column:
+                  name: tips_and_cautions
+                  type: TEXT
+              - column:
+                  name: mechanic
+                  type: VARCHAR(50) # (Compound or Isolation)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+        - createIndex:
+            indexName: idx_exercise_name
+            tableName: exercise
+            columns:
+              - column:
+                  name: name

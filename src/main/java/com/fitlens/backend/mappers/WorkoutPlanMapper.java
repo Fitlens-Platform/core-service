@@ -2,7 +2,7 @@ package com.fitlens.backend.mappers;
 
 import com.fitlens.backend.dto.workoutplan.WorkoutDayRequest;
 import com.fitlens.backend.dto.workoutplan.WorkoutDayResponse;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanRequest;
+import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
 import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
 import com.fitlens.backend.entities.WorkoutDay;
 import com.fitlens.backend.entities.WorkoutPlan;
@@ -18,7 +18,7 @@ public interface WorkoutPlanMapper {
 
     WorkoutDayResponse toDayResponse(WorkoutDay workoutDay);
 
-    WorkoutPlan toPlanEntity(WorkoutPlanRequest workoutPlanRequest);
+    WorkoutPlan toPlanEntity(CreateWorkoutPlanRequest createWorkoutPlanRequest);
 
     WorkoutDay toDayEntity(WorkoutDayRequest workoutDayRequest);
 
