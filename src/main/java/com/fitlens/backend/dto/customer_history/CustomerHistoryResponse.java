@@ -1,4 +1,4 @@
-package com.fitlens.backend.dto.customerhistory;
+package com.fitlens.backend.dto.customer_history;
 
 import com.fitlens.backend.entities.enums.FitnessLevel;
 import com.fitlens.backend.entities.enums.UserGoal;

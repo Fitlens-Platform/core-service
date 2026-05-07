@@ -1,4 +1,4 @@
-package com.fitlens.backend.dto.workoutplan;
+package com.fitlens.backend.dto.workout_plan;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;

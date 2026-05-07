@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/changes/001-create-users-table.yaml
   - include:
       file: db/changelog/changes/002-create-customer-history-table.yaml
+  - include:
+      file: db/changelog/changes/006-create-workout-day-exercise-table.yaml

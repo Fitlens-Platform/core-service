@@ -46,6 +46,7 @@ public class Exercise {
     @Convert(converter = StringListConverter.class)
     private List<String> secondaryMuscles;
 
+    @Convert(converter = StringListConverter.class)
     @Column(name = "required_equipments")
     private List<String> requiredEquipments;
 

@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-workout-day-exercise-table
+      author: mahmoud
+      changes:
+        - createTable:
+            tableName: workout_day_exercise
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: day_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exercise_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_in_day
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sets
+                  type: INT
+                  constraints:
+                     nullable: false
+              - column:
+                  name: reps
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rest_seconds
+                  type: INT
+                  defaultValueNumeric: 60
+
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_day_exercise
+            baseColumnNames: day_id
+            constraintName: fk_workout_day_exercise_workout_day
+            referencedTableName: workout_day
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_day_exercise
+            baseColumnNames: exercise_id
+            constraintName: fk_workout_day_exercise_exercise
+            referencedTableName: exercise
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT

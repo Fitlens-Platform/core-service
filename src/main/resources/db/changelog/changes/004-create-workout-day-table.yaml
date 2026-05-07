@@ -30,7 +30,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseTableName: workout_day
             baseColumnNames: plan_id
-            constraintName: fk_workout_day_workout_plan # اتأكد من حرف الـ t هنا
+            constraintName: fk_workout_day_workout_plan
             referencedTableName: workout_plan
             referencedColumnNames: id
             onDelete: RESTRICT

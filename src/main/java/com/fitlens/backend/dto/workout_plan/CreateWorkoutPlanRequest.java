@@ -1,4 +1,4 @@
-package com.fitlens.backend.dto.workoutplan;
+package com.fitlens.backend.dto.workout_plan;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -28,4 +28,5 @@ public class CreateWorkoutPlanRequest {
 
     @Schema(description = "A detailed collection of individual training days and their specific muscle group focus")
     private List<WorkoutDayRequest> days;
+
 }

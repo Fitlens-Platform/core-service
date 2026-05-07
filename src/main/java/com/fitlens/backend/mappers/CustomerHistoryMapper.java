@@ -1,6 +1,6 @@
 package com.fitlens.backend.mappers;
 
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryResponse;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryResponse;
 import com.fitlens.backend.entities.User;
 import com.fitlens.backend.entities.CustomerHistory;
 import org.mapstruct.Mapper;

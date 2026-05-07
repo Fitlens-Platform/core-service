@@ -1,8 +1,8 @@
 package com.fitlens.backend.controllers;
 
 import com.fitlens.backend.dto.PagedResponse;
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryFilter;
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryResponse;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryFilter;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryResponse;
 import com.fitlens.backend.services.CustomerHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

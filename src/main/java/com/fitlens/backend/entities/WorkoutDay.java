@@ -3,6 +3,9 @@ package com.fitlens.backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "workout_day")
 @Getter
@@ -23,4 +26,9 @@ public class WorkoutDay {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id", nullable = false)
     private WorkoutPlan plan;
+
+    @OneToMany(mappedBy = "workoutDay", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("orderInDay ASC")
+    private List<WorkoutDayExercise> exercises = new ArrayList<>();
+
 }

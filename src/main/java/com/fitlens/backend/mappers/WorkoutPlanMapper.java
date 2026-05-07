@@ -1,9 +1,9 @@
 package com.fitlens.backend.mappers;
 
-import com.fitlens.backend.dto.workoutplan.WorkoutDayRequest;
-import com.fitlens.backend.dto.workoutplan.WorkoutDayResponse;
-import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
+import com.fitlens.backend.dto.workout_plan.WorkoutDayRequest;
+import com.fitlens.backend.dto.workout_plan.WorkoutDayResponse;
+import com.fitlens.backend.dto.workout_plan.CreateWorkoutPlanRequest;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanResponse;
 import com.fitlens.backend.entities.WorkoutDay;
 import com.fitlens.backend.entities.WorkoutPlan;
 import org.mapstruct.Mapper;

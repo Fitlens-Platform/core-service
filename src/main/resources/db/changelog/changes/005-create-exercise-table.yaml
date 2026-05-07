@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 006-create-exercise-table
+      id: 005-create-exercise-table
       author: mahmoud
       changes:
         - createTable:

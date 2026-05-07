@@ -1,6 +1,6 @@
 package com.fitlens.backend.specifications;
 
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanFilter;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanFilter;
 import com.fitlens.backend.entities.WorkoutPlan;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.jpa.domain.Specification;

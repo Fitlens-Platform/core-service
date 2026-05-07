@@ -1,6 +1,6 @@
 package com.fitlens.backend.specifications;
 
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryFilter;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryFilter;
 import com.fitlens.backend.entities.CustomerHistory;
 import jakarta.persistence.criteria.Predicate;
 import lombok.experimental.UtilityClass;

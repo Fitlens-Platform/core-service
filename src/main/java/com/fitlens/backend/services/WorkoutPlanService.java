@@ -1,9 +1,9 @@
 package com.fitlens.backend.services;
 
 import com.fitlens.backend.dto.PagedResponse;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanFilter;
-import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanFilter;
+import com.fitlens.backend.dto.workout_plan.CreateWorkoutPlanRequest;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanResponse;
 import com.fitlens.backend.mappers.WorkoutPlanMapper;
 import com.fitlens.backend.repositories.WorkoutPlanRepository;
 import com.fitlens.backend.specifications.WorkoutPlanSpecification;

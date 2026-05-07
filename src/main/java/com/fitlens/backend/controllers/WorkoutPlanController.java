@@ -2,9 +2,9 @@ package com.fitlens.backend.controllers;
 
 
 import com.fitlens.backend.dto.PagedResponse;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanFilter;
-import com.fitlens.backend.dto.workoutplan.CreateWorkoutPlanRequest;
-import com.fitlens.backend.dto.workoutplan.WorkoutPlanResponse;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanFilter;
+import com.fitlens.backend.dto.workout_plan.CreateWorkoutPlanRequest;
+import com.fitlens.backend.dto.workout_plan.WorkoutPlanResponse;
 import com.fitlens.backend.services.WorkoutPlanService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

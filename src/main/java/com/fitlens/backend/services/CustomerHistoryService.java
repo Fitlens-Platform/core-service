@@ -1,8 +1,8 @@
 package com.fitlens.backend.services;
 
 import com.fitlens.backend.dto.PagedResponse;
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryFilter;
-import com.fitlens.backend.dto.customerhistory.CustomerHistoryResponse;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryFilter;
+import com.fitlens.backend.dto.customer_history.CustomerHistoryResponse;
 import com.fitlens.backend.entities.User;
 import com.fitlens.backend.mappers.CustomerHistoryMapper;
 import com.fitlens.backend.repositories.CustomerHistoryRepository;

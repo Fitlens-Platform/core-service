@@ -1,4 +1,4 @@
-package com.fitlens.backend.dto.customerhistory;
+package com.fitlens.backend.dto.customer_history;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
