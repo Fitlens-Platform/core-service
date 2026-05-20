@@ -39,7 +39,7 @@ public class WorkoutPlanController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error - Something went wrong on the server")
     })
     @GetMapping
-    public ResponseEntity<PagedResponse<WorkoutPlanResponse>> getAllWorkoutPlans(WorkoutPlanFilter filter){
+    public ResponseEntity<PagedResponse<WorkoutPlanResponse>> getAllWorkoutPlans(@Valid @ModelAttribute WorkoutPlanFilter filter){
         log.info("Request to get a page of WorkoutPlans with filter: {}", filter);
         var response = workoutPlanService.getAllPlans(filter);
         return ResponseEntity.ok(response);

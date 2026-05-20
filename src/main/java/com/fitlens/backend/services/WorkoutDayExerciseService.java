@@ -37,7 +37,7 @@ public class WorkoutDayExerciseService {
 
         var workoutExercise = workoutDayExerciseMapper.toEntity(request);
 
-        var workoutDay = workoutDayRepository.findById(request.getDayId()).orElseThrow(() -> new EntityNotFoundException("Day not found"));
+        var workoutDay = workoutDayRepository.findById(dayId).orElseThrow(() -> new EntityNotFoundException("Day not found"));
 
         var exercise = exerciseRepository.findById(request.getExerciseId()).orElseThrow(() -> new EntityNotFoundException("Exercise not found"));
 

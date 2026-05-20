@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/changes/002-create-customer-history-table.yaml
   - include:
       file: db/changelog/changes/006-create-workout-day-exercise-table.yaml
+  - include:
+      file: db/changelog/changes/007-create-workout-session-table.yaml

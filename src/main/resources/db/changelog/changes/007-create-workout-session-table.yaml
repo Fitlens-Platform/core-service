@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-workout-session-table
+      author: mahmoud
+      changes:
+        - createTable:
+            tableName: workout_session
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: plan_id
+                  type: BIGINT
+              - column:
+                  name: day_id
+                  type: BIGINT
+              - column:
+                  name: session_date
+                  type: DATE
+                  defaultValueComputed: CURRENT_DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: performance_score
+                  type: FLOAT
+              - column:
+                  name: thoughts
+                  type: VARCHAR(50)
+              - column:
+                  name: started_at
+                  type: DATETIME
+              - column:
+                  name: completed_at
+                  type: DATETIME
+              - column:
+                  name: duration_minutes
+                  type: BIGINT
+
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_session
+            baseColumnNames: user_id
+            constraintName: fk_workout_session_users
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_session
+            baseColumnNames: day_id
+            constraintName: fk_workout_session_workout_day
+            referencedTableName: workout_day
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_session
+            baseColumnNames: plan_id
+            constraintName: fk_workout_session_workout_plan
+            referencedTableName: workout_plan
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        - createIndex:
+            indexName: idx_session_user_date
+            tableName: workout_session
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: session_date

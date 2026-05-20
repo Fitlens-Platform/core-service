@@ -36,7 +36,7 @@ public class ExerciseController {
             @ApiResponse(description = "Internal Server Error", responseCode = "500")
     })
     @GetMapping
-    public ResponseEntity<PagedResponse<ExerciseResponse>> getAllExercises(@Valid @RequestBody ExerciseFilter filter){
+    public ResponseEntity<PagedResponse<ExerciseResponse>> getAllExercises(@Valid @ModelAttribute ExerciseFilter filter){
 
         log.info("Request to fetch paged exercises with filter {}", filter);
 

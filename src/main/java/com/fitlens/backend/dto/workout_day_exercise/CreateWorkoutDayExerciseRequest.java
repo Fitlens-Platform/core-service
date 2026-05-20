@@ -10,9 +10,6 @@ import lombok.*;
 @Schema(description = "Data transfer object for linking an exercise from the library to a specific workout day with training parameters.")
 public class CreateWorkoutDayExerciseRequest {
 
-    @Schema(description = "The unique identifier of the workout day this exercise belongs to", example = "101")
-    private Long dayId;
-
     @Schema(description = "The unique identifier of the exercise being assigned to the day", example = "45")
     private Long exerciseId;
 

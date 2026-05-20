@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-create-workout-exercise-result-table
+      author: mahmoud_samir
+      changes:
+        - createTable:
+            tableName: workout_exercise_result
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: session_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: workout_day_exercise_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reps_count
+                  type: jsonb
+              - column:
+                  name: correct_reps
+                  type: jsonb
+              - column:
+                  name: duration_seconds
+                  type: jsonb
+              - column:
+                  name: weight_used
+                  type: jsonb
+              - column:
+                  name: avg_accuracy_score
+                  type: float
+              - column:
+                  name: accuracy_scores_per_set
+                  type: jsonb
+              - column:
+                  name: ai_feedback
+                  type: jsonb
+
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_exercise_result
+            baseColumnNames: session_id
+            constraintName: fk_workout_exercise_result_session
+            referencedTableName: workout_session
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: workout_exercise_result
+            baseColumnNames: workout_day_exercise_id
+            constraintName: fk_workout_exercise_result_day_exercise
+            referencedTableName: workout_day_exercise
+            referencedColumnNames: id
