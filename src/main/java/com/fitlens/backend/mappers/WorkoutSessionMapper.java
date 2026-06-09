@@ -12,6 +12,9 @@ import java.time.Duration;
 
 public interface WorkoutSessionMapper {
 
+    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "planId", source = "workoutPlan.id")
+    @Mapping(target = "dayId", source = "workoutDay.id")
     @Mapping(target = "durationMinutes", expression = "java(calculateDuration(session))")
     WorkoutSessionResponse toResponse(WorkoutSession session);
 

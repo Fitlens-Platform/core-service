@@ -5,13 +5,11 @@ import com.fitlens.backend.dto.workout_session.CompleteSessionRequest;
 import com.fitlens.backend.dto.workout_session.StartSessionRequest;
 import com.fitlens.backend.dto.workout_session.WorkoutSessionFilter;
 import com.fitlens.backend.dto.workout_session.WorkoutSessionResponse;
+import com.fitlens.backend.entities.WorkoutExerciseResult;
 import com.fitlens.backend.entities.WorkoutSession;
 import com.fitlens.backend.entities.enums.SessionStatus;
 import com.fitlens.backend.mappers.WorkoutSessionMapper;
-import com.fitlens.backend.repositories.UserRepository;
-import com.fitlens.backend.repositories.WorkoutDayRepository;
-import com.fitlens.backend.repositories.WorkoutPlanRepository;
-import com.fitlens.backend.repositories.WorkoutSessionRepository;
+import com.fitlens.backend.repositories.*;
 import com.fitlens.backend.specifications.WorkoutSessionSpecification;
 import com.fitlens.backend.utils.SortUtils;
 import jakarta.persistence.EntityNotFoundException;
@@ -34,12 +32,13 @@ public class WorkoutSessionService {
     private final WorkoutPlanRepository workoutPlanRepository;
     private final WorkoutDayRepository workoutDayRepository;
     private final WorkoutSessionMapper sessionMapper;
+    private final WorkoutExerciseResultRepository workoutExerciseResultRepository;
 
     @Transactional
-    public WorkoutSessionResponse startSession(StartSessionRequest request) {
-        log.info("Attempting to start a new session for user id: {}", request.getUserId());
+    public WorkoutSessionResponse startSession(Long customerId, StartSessionRequest request) {
+        log.info("Attempting to start a new session for user id: {}", customerId);
 
-        workoutSessionRepository.findByUserIdAndStatus(request.getUserId(), SessionStatus.IN_PROGRESS)
+        workoutSessionRepository.findByUserIdAndStatus(customerId, SessionStatus.IN_PROGRESS)
                 .ifPresent(activeSession -> {
                     log.info("Auto-completing previous active session ID: {}", activeSession.getId());
 
@@ -49,7 +48,7 @@ public class WorkoutSessionService {
                     workoutSessionRepository.save(activeSession);
                 });
 
-        var user = userRepository.findById(request.getUserId())
+        var user = userRepository.findById(customerId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         var plan = workoutPlanRepository.findById(request.getPlanId())
@@ -86,14 +85,25 @@ public class WorkoutSessionService {
             throw new IllegalStateException("Only sessions in progress can be completed");
         }
 
+        var exerciseResults = workoutExerciseResultRepository.findByWorkoutSessionId(sessionId);
+        float calculatedPerformanceScore = 0.0f;
+
+        if (exerciseResults != null && !exerciseResults.isEmpty()) {
+            double totalAccuracy = exerciseResults.stream()
+                    .mapToDouble(WorkoutExerciseResult::getAvgAccuracyScore)
+                    .sum();
+            calculatedPerformanceScore = (float) (totalAccuracy / exerciseResults.size());
+        }
+
         session.setStatus(SessionStatus.COMPLETED);
         session.setCompletedAt(Instant.now());
-        session.setPerformanceScore(request.getPerformanceScore());
+        session.setPerformanceScore(calculatedPerformanceScore);
         session.setThoughts(request.getThoughts());
 
         var updatedSession = workoutSessionRepository.save(session);
 
-        log.info("Session {} successfully completed for user {}", sessionId, session.getUser().getId());
+        log.info("Session {} successfully completed for user {} with Performance Score: {}",
+                sessionId, session.getUser().getId(), calculatedPerformanceScore);
 
         return sessionMapper.toResponse(updatedSession);
     }

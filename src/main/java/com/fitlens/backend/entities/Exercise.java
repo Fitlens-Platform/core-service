@@ -60,6 +60,10 @@ public class Exercise {
     @Column(length = 50)
     private ExerciseMechanic mechanic;
 
+    @Column(name = "is_explosive", nullable = false)
+    @Builder.Default
+    private boolean isExplosive = false;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;

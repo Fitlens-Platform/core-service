@@ -1,6 +1,7 @@
 package com.fitlens.backend.dto.workout_session;
 
 import com.fitlens.backend.entities.enums.SessionThoughts;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -14,10 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompleteSessionRequest {
-    @NotNull(message = "Performance score is required")
-    @Min(0) @Max(100)
-    private Float performanceScore;
 
-    @NotNull(message = "Thoughts are required")
-    private SessionThoughts thoughts;
-}
+    @Schema(description = "The user's physical or mental feeling after completing the session",
+            example = "FEELING_GREAT",
+            allowableValues = {"FEELING_GREAT", "TIRED", "EXHAUSTED", "SICK", "INJURED"},
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private SessionThoughts thoughts;}

@@ -34,12 +34,13 @@ public class WorkoutSessionController {
     })
     @PostMapping("/start")
     public ResponseEntity<WorkoutSessionResponse> startSession(
+            @RequestHeader("X-User-Id") Long customerId,
             @Valid @RequestBody StartSessionRequest request) {
 
         log.info("REST request to start a new session for user: {} with plan: {}",
-                request.getUserId(), request.getPlanId());
+                customerId, request.getPlanId());
 
-        var response = workoutSessionService.startSession(request);
+        var response = workoutSessionService.startSession(customerId, request);
 
         log.info("Session started successfully. Session ID: {}", response.getId());
         return ResponseEntity.ok(response);
@@ -55,7 +56,7 @@ public class WorkoutSessionController {
             @PathVariable Long id,
             @Valid @RequestBody CompleteSessionRequest request) {
 
-        log.info("REST request to complete session ID: {} with score: {}", id, request.getPerformanceScore());
+        log.info("REST request to complete session ID: {}", id);
 
         var response = workoutSessionService.completeSession(id, request);
 
@@ -64,9 +65,9 @@ public class WorkoutSessionController {
     }
 
     @Operation(summary = "Get user workout history (Paginated)")
-    @GetMapping("/user/{userId}")
+    @GetMapping("/history")
     public ResponseEntity<PagedResponse<WorkoutSessionResponse>> getUserHistory(
-            @PathVariable Long customerId,
+            @RequestHeader("X-User-Id") Long customerId,
             @Valid @ModelAttribute WorkoutSessionFilter filter) {
 
         log.info("REST request to get history for user: {}, Page: {}, Size: {}", customerId, filter.getPage(), filter.getSize());

@@ -44,16 +44,31 @@ public class CustomerService {
 		}
 
 		var customer = findByIdOrThrow(customerId);
+		boolean isPhysicalUpdate = isPhysicalDataSent(request);
 
 		customerMapper.updateCustomer(request, customer);
 
-		customer.setDailyCalories(calculateCalories(customer));
+		if (isPhysicalUpdate) {
+			log.info("Physical metrics updated. Recalculating calories and taking snapshot for customer ID: {}", customerId);
+
+			customer.setDailyCalories(calculateCalories(customer));
+
+			customerHistoryService.saveCustomerHistorySnapshot(customer);
+		}
 
 		var savedCustomer = userRepository.save(customer);
 
-		customerHistoryService.saveCustomerHistorySnapshot(savedCustomer);
-
 		return customerMapper.toResponse(savedCustomer);
+	}
+
+	private boolean isPhysicalDataSent(CustomerUpdateRequest request) {
+		return request.getWeightKg() != null ||
+				request.getHeightCm() != null ||
+				request.getBirthDate() != null ||
+				request.getGender() != null ||
+				request.getGoal() != null ||
+				request.getFitnessLevel() != null ||
+				request.getTrainingDays() != null;
 	}
 
 	@Transactional

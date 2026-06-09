@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/workout/session")
+@RequestMapping("/workout/exercise-results")
 @RequiredArgsConstructor
 @Tag(name = "Workout Sessions", description = "APIs for managing training sessions lifecycle")
 @SecurityRequirement(name = "bearerAuth")

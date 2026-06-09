@@ -56,4 +56,8 @@ public class ExerciseResponse {
     @Schema(description = "The mechanical classification of the movement (Compound or Isolation)",
             example = "COMPOUND")
     private ExerciseMechanic mechanic;
+
+    @Schema(description = "Indicates whether the exercise involves explosive or plyometric movements (e.g., Box Jumps)",
+            example = "false")
+    private boolean isExplosive;
 }

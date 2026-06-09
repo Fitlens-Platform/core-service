@@ -3,6 +3,7 @@ package com.fitlens.backend.dto.exercise;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -55,5 +56,11 @@ public class CreateExerciseRequest {
     @Schema(description = "The movement type (Compound or Isolation)", example = "COMPOUND",allowableValues = { "COMPOUND", "ISOLATION"},
             requiredMode = Schema.RequiredMode.REQUIRED)
     private String mechanic;
+
+    @NotNull(message = "isExplosive flag is required")
+    @Schema(description = "Indicates whether the exercise involves explosive or plyometric movements",
+            example = "false",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private Boolean isExplosive;
 
 }
