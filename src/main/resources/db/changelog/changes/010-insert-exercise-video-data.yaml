@@ -1,0 +1,160 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-exercise-videos-by-name
+      author: mahmoud_samir
+      changes:
+        # ================== BENCH ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BENCH" }
+              - column: { name: exercise_name, value: "bench press" }
+              - column: { name: video_path, value: "Bench/bench%20press.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BENCH" }
+              - column: { name: exercise_name, value: "chest fly" }
+              - column: { name: video_path, value: "Bench/chest%20fly.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BENCH" }
+              - column: { name: exercise_name, value: "incline bench press" }
+              - column: { name: video_path, value: "Bench/incline%20bench%20press.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BENCH" }
+              - column: { name: exercise_name, value: "push up" }
+              - column: { name: video_path, value: "Bench/push%20up.mp4" }
+
+        # ================== BACK ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BACK" }
+              - column: { name: exercise_name, value: "barbell row" }
+              - column: { name: video_path, value: "Back/barbell%20row.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BACK" }
+              - column: { name: exercise_name, value: "deadlift" }
+              - column: { name: video_path, value: "Back/deadlift.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BACK" }
+              - column: { name: exercise_name, value: "lat pulldown" }
+              - column: { name: video_path, value: "Back/lat%20pulldown.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BACK" }
+              - column: { name: exercise_name, value: "pull-up" }
+              - column: { name: video_path, value: "Back/pull%20up.mp4" }
+
+        # ================== LEG ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "LEG" }
+              - column: { name: exercise_name, value: "leg curl" }
+              - column: { name: video_path, value: "Leg/leg%20curl.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "LEG" }
+              - column: { name: exercise_name, value: "leg press" }
+              - column: { name: video_path, value: "Leg/leg%20press.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "LEG" }
+              - column: { name: exercise_name, value: "lunges" }
+              - column: { name: video_path, value: "Leg/lunges.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "LEG" }
+              - column: { name: exercise_name, value: "squat" }
+              - column: { name: video_path, value: "Leg/squat.mp4" }
+
+        # ================== SHOULDER ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "SHOULDER" }
+              - column: { name: exercise_name, value: "front raise" }
+              - column: { name: video_path, value: "Shoulder/front%20raise.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "SHOULDER" }
+              - column: { name: exercise_name, value: "lateral raise" }
+              - column: { name: video_path, value: "Shoulder/lateral%20raise.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "SHOULDER" }
+              - column: { name: exercise_name, value: "rear delt fly" }
+              - column: { name: video_path, value: "Shoulder/rear%20delt%20fly.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "SHOULDER" }
+              - column: { name: exercise_name, value: "shoulder press" }
+              - column: { name: video_path, value: "Shoulder/shoulder%20press.mp4" }
+
+        # ================== BICEPS ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BICEPS" }
+              - column: { name: exercise_name, value: "barbell curl" }
+              - column: { name: video_path, value: "Biceps/barbell%20curl.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BICEPS" }
+              - column: { name: exercise_name, value: "concentration curl" }
+              - column: { name: video_path, value: "Biceps/concentration%20curl.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BICEPS" }
+              - column: { name: exercise_name, value: "dumbell curl" }
+              - column: { name: video_path, value: "Biceps/dumbell%20curl.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "BICEPS" }
+              - column: { name: exercise_name, value: "hammer curl" }
+              - column: { name: video_path, value: "Biceps/hammer%20curl.mp4" }
+
+        # ================== TRICEPS ==================
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "TRICEPS" }
+              - column: { name: exercise_name, value: "close grip bench press" }
+              - column: { name: video_path, value: "Triceps/close%20grip%20bench%20press.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "TRICEPS" }
+              - column: { name: exercise_name, value: "dips" }
+              - column: { name: video_path, value: "Triceps/dips.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "TRICEPS" }
+              - column: { name: exercise_name, value: "skull crusher" }
+              - column: { name: video_path, value: "Triceps/skull%20crusher.mp4" }
+        - insert:
+            tableName: exercise_video
+            columns:
+              - column: { name: muscle_group, value: "TRICEPS" }
+              - column: { name: exercise_name, value: "triceps push down" }
+              - column: { name: video_path, value: "Triceps/triceps%20push%20down.mp4" }

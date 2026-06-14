@@ -15,6 +15,9 @@ spring:
     username: ${DB_USERNAME:fitlens}
     password: ${DB_PASSWORD}
 
+  supabase:
+    base-url: ${SUPABASE_BASE_URL}
+
   data:
     redis:
       database: 2

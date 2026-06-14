@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-create-exercise-video-table
+      author: mahmoud_samir
+      changes:
+        - createTable:
+            tableName: exercise_video
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: muscle_group
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exercise_name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: video_path
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
